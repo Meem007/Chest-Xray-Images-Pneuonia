@@ -1,67 +1,72 @@
-# Chest-Xray-Images-Pneuonia
-This repository contains code for detecting pneumonia in chest X-ray images using two different deep learning approaches: Convolutional Neural Network (CNN) and ResNet-50. The models are trained, evaluated, and compared for their performance on the task of pneumonia detection.
+# Chest X-ray Images Pneumonia Detection
+
+This repository contains code for detecting pneumonia from chest X-ray images using Convolutional Neural Networks (CNN) and the ResNet-50 model. The dataset used for this project is collected from Kaggle and can be found [here](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia).
 
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Dependencies](#dependencies)
-- [Data Loading](#data-loading)
 - [Data Preprocessing](#data-preprocessing)
 - [Model Building](#model-building)
-- [Model Training](#model-training)
-- [Model Evaluation](#model-evaluation)
-- [Comparison](#comparison)
+- [Model Training and Evaluation](#model-training-and-evaluation)
+- [Comparison of CNN and ResNet-50](#comparison-of-cnn-and-resnet-50)
 - [Conclusion](#conclusion)
 
 ## Introduction
 
-Pneumonia is a common respiratory infection that can be diagnosed using chest X-ray images. This project aims to develop and compare two different deep learning models for detecting pneumonia in chest X-ray images: a Convolutional Neural Network (CNN) and the ResNet-50 architecture.
+Pneumonia is a lung infection that can be identified through chest X-ray images. This repository presents two deep learning approaches – CNN and ResNet-50 – for automating the diagnosis of pneumonia from chest X-ray images.
 
 ## Dependencies
 
-Make sure you have the following libraries installed:
+The following libraries are used in this project:
 
-- Python
-- numpy
-- pandas
-- matplotlib
-- seaborn
-- scikit-learn
-- TensorFlow
-- Keras
 - OpenCV
-- skimage
+- Matplotlib
+- NumPy
+- Pandas
+- Seaborn
+- Scikit-learn
+- TensorFlow
 
-You can install these libraries using the following command:
+You can install them using the following command:
 
 ```bash
-pip install numpy pandas matplotlib seaborn scikit-learn tensorflow opencv-python scikit-image
+pip install opencv-python matplotlib numpy pandas seaborn scikit-learn tensorflow
 ```
-
-## Data Loading
-
-The dataset consists of chest X-ray images categorized into different folders for training, validation, and testing. The code loads the images, preprocesses them, and organizes them into dataframes.
 
 ## Data Preprocessing
 
-Images are resized to a consistent size of 224x224 pixels and normalized to values between 0 and 1. Labels are encoded numerically using label encoding, and one-hot encoding is applied to the labels for model training.
+- Load images from the `train`, `validation`, and `test` directories.
+- Convert images to RGB format and resize them to a consistent size (e.g., 224x224).
+- Create DataFrames for each dataset containing image arrays and labels.
+- Normalize pixel values to [0, 1] and convert labels to categorical format.
+- Split data into training, validation, and test sets.
 
 ## Model Building
 
-Two models are built: a CNN and a ResNet-50 architecture. The CNN model consists of several convolutional and pooling layers, followed by fully connected layers. The ResNet-50 model uses a pre-trained ResNet-50 base with added dense layers.
+### CNN Model
 
-## Model Training
+- Create a Sequential model with Convolutional and Pooling layers.
+- Flatten the data and add Dense layers for classification.
 
-The models are trained using the training data and validated using the validation data. Training performance is monitored for each epoch, and the best performing epoch is selected based on validation loss/accuracy.
+### ResNet-50 Model
 
-## Model Evaluation
+- Load the ResNet-50 model with pre-trained weights and without the top classification layer.
+- Add custom Dense layers for classification on top of the pre-trained model.
 
-The models are evaluated on the test dataset, and their accuracy is reported. Additionally, confusion matrices are generated to visualize the model's performance.
+## Model Training and Evaluation
 
-## Comparison
+- Train both the CNN and ResNet-50 models on the training data.
+- Evaluate the models on the validation and test datasets.
+- Plot training history including accuracy and loss curves.
+- Calculate and visualize the confusion matrix for model performance.
 
-The performance of the CNN and ResNet-50 models is compared based on their test accuracy. The CNN model achieves higher accuracy (71%) compared to the ResNet-50 model (67%).
+## Comparison of CNN and ResNet-50
+
+Both models were trained and evaluated on the same dataset to predict pneumonia from chest X-ray images. After training, the models were compared based on their validation and test accuracies.
+
+The CNN model achieved an accuracy of 71% on the test dataset, while the ResNet-50 model achieved an accuracy of 67%. This suggests that the CNN model performs better in this context.
 
 ## Conclusion
 
-This repository demonstrates the implementation and comparison of two different deep learning models for detecting pneumonia in chest X-ray images. The CNN model outperforms the ResNet-50 model in terms of accuracy for pneumonia detection. The comparison results provide insights into the effectiveness of different deep learning approaches for medical image classification tasks.
+This project demonstrates the application of Convolutional Neural Networks and the ResNet-50 model for pneumonia detection in chest X-ray images. The results show that the CNN model outperforms the ResNet-50 model in terms of accuracy. This repository serves as a starting point for further exploration and improvement of pneumonia detection using deep learning techniques.
